@@ -5,17 +5,24 @@ $(document).ready(function () {
     var is_ajax_fire = 0;
     var types = new Map();
     var dataCon;
+    var filtro;
     createHeadTable();
     createForm();
     createEditForm();
     manageData();
+
+    $("#btFiltro").on("click", function () {
+        filtro = $('#filtro').val();
+        manageData();
+        $('#pagination').twbsPagination('destroy');
+    });
 
     function manageData() {
 
         $.ajax({
             dataType: 'json',
             url: 'getCategoria.php',
-            data: {page: page}
+            data: {page: page, filtro: filtro}
         }).done(function (data) {
             total_page = Math.ceil(data.total / 10);
             current_page = page;
@@ -24,6 +31,7 @@ $(document).ready(function () {
                 visiblePages: current_page,
                 onPageClick: function (event, pageL) {
                     page = pageL;
+                    filtro = $('#filtro').val();
                     if (is_ajax_fire != 0) {
                         getPageData();
                     }
@@ -40,7 +48,7 @@ $(document).ready(function () {
             dataType: 'json',
             url: 'getCategoria.php',
 
-            data: {page: page}
+            data: {page: page, filtro: filtro}
         }).done(function (data) {
             manageRow(data.data);
         });
@@ -72,6 +80,8 @@ $(document).ready(function () {
         rows = rows + '<th width="200px">Ação</th>'
         rows = rows + '</tr>'
         $("thead").html(rows);
+
+        $('#filtro').attr("placeholder", "Entre com a Descrição da Categoria");
     }
     function createForm() {
 
