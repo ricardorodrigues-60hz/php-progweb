@@ -42,6 +42,15 @@ $classe = isset($_GET["classe"])?$_GET["classe"]:"";
                     </div>
                 </div>
             </div>
+            <div class="input-group">
+                <span class="input-group-addon">Filtros</span>
+                <input type="text" class="form-control" id="filtro" placeholder="Entre com o filtro" name="filtro">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-primary" id="btFiltro">
+                        Filtrar
+                    </button>
+                </div>
+            </div>
             <table class="table table-bordered">
                 <thead>
                 </thead>
