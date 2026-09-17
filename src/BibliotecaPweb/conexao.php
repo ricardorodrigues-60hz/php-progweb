@@ -1,7 +1,7 @@
 <?php
     $servername = 'localhost';
-    $username = 'fatec';
-    $password = 'fatec2021';
+    $username = 'root';
+    $password = 'root';
     $dbname = 'bibliotecapweb';
 
     $conn = new mysqli($servername, $username, $password, $dbname);
