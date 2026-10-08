@@ -12,7 +12,10 @@ $classe = isset($_GET["classe"])?$_GET["classe"]:"";
         <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">        
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        
         <script src="javascript<?php echo $classe; ?>.js"></script>
+        <!--Load the AJAX API-->
     </head>
     <body>
         <nav class="navbar navbar-inverse">
@@ -87,8 +90,31 @@ $classe = isset($_GET["classe"])?$_GET["classe"]:"";
                             <form data-toggle="validator" action="update<?php echo $classe; ?>.php" method="POST">
                             </form>
                         </div>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-success" data-target="#create-item">
+                                Criar <?php echo $class; ?>
+                            </button>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#chart">
+                                Gráfico <?php echo $classe; ?>
+                            </button>
+                        </div>
                     </div>
                 </div>
+                <!-- Chart Modal -->
+                <div class="modal fade" id="chart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Chart <?php echo $classe; ?></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div id="chart_div"></div>
+                                <div id="png"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div  
             </div>
         </div>
         <?php }?>
